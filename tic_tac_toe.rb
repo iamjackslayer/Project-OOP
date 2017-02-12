@@ -58,6 +58,8 @@ class Game
     check_victory
   end
   def ai_turn
+    check_draw
+    check_victory
     @ai_choice = rand(0..8)
     smart_up
     if @ai_choice <= 2
@@ -156,7 +158,11 @@ class Game
     end
   end
   def check_draw
-    @game_over = true if @grid[0].count("___") == 0 && @grid[1].count("___") == 0 && @grid[2].count("___") == 0
+    if @grid[0].count("___") == 0 && @grid[1].count("___") == 0 && @grid[2].count("___") == 0 
+      @game_over = true 
+      puts "Draw. Good game."
+      exit
+    end
   end
 end
 a = Game.new()
